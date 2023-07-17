@@ -1,15 +1,15 @@
 /*
-  TÌtulo: Sistema de Cadastro de HÛspedes - Casa de Campo Tranquilidade;
-  Autor: Ervelany Lins de FranÁa;
-  Data de CriaÁ„o: 11/07/2023;
-  DescriÁ„o: Programa que cadastra os hÛspedes e gera relatÛrios dos cadastros;
+  T√≠tulo: Sistema de Cadastro de H√≥spedes - Casa de Campo Tranquilidade;
+  Autor: Wellington Albuquerque de Aguiar;
+  Data de Cria√ß√£o: 11/07/2023;
+  Descri√ß√£o: Programa que cadastra os h√≥spedes e gera relat√≥rios dos cadastros;
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
 
-#ifdef _WIN32 // N„o precisa por _WIN64 pois n„o existe Windows 64 bit puro!!!
+#ifdef _WIN32 // N√£o precisa por _WIN64 pois n√£o existe Windows 64 bit puro!!!
     #define LIMPA_TELA system("cls")
 #else
     #define LIMPA_TELA system("clear")
@@ -37,7 +37,7 @@ struct EntradaDados tabelaReferenciaDados[] = {
     {12, 950.0, 140.0}
 };
 
-// Prototipagem das funÁıes. … necess·rio porque o GCC exige;
+// Prototipagem das fun√ß√µes. √â necess√°rio porque o GCC exige;
 void exibirTitulo();
 void menuOpcoes();
 void telaCadastro();
@@ -48,7 +48,7 @@ void lerDadosClientes();
 float calcularValorAPagar(struct EntradaDados, int, int); //
 
 int main(){
-    // Configurando o locale para portuguÍs
+    // Configurando o locale para portugu√™s
     setlocale(LC_ALL, "portuguese");
 
     // Chama o menu principal do programa
@@ -69,18 +69,18 @@ void menuOpcoes(){
     do{
         exibirTitulo();
 
-        printf("\n OpÁıes: \n\n");
+        printf("\n Op√ß√µes: \n\n");
         printf("\t1. Cadastrar Cliente\n");
         printf("\t2. Listagem Geral\n");
-        printf("\t3. RelatÛrio EstatÌstico\n");
+        printf("\t3. Relat√≥rio Estat√≠stico\n");
         printf("\t0. Sair\n\n");
 
         do{
-            printf(" Informe a opÁ„o desejada: ");
+            printf(" Informe a op√ß√£o desejada: ");
             scanf("%d", &opcao);
 
             if(opcao < 0 || opcao > 3){
-                printf(" OpÁ„o inv·lida. Digite novamente.\n");
+                printf(" Op√ß√£o inv√°lida. Digite novamente.\n");
                 getchar();
             }
         }while(opcao < 0 || opcao > 3);
@@ -114,7 +114,7 @@ void telaCadastro(){
     do{
         gravarDadosClientes(arquivo);
 
-        printf(" Cadastrar outro (1-sim/0-n„o)?: ");
+        printf(" Cadastrar outro (1-sim/0-n√£o)?: ");
         scanf("%d", &opcao);
 
     }while(opcao == 1);
@@ -139,7 +139,7 @@ void telaRelatorioEstatistico() {
 
     FILE* arquivo = fopen("db_cadastro_clientes.txt", "r");
     if (arquivo == NULL) {
-        printf("O arquivo de dados de clientes n„o existe. Nenhum relatÛrio pode ser gerado.\n");
+        printf("O arquivo de dados de clientes n√£o existe. Nenhum relat√≥rio pode ser gerado.\n");
         printf("\n\n------------------------------------------------------------------------------------------------------------------------\n");
         printf(" Tecle enter para voltar ao menu...");
         getchar();
@@ -150,7 +150,7 @@ void telaRelatorioEstatistico() {
     int cliMaisDezDias = 0;
     float mediaHospedes = 0.0;
     float percFuncAuxiliar = 0.0;
-    int locMaisNovo = 120; // Valor inicial alto para encontrar o menor (difÌcilmente alguÈm com mais de 120 anos ir· alugar);
+    int locMaisNovo = 120; // Valor inicial alto para encontrar o menor (dif√≠cilmente algu√©m com mais de 120 anos ir√° alugar);
 
     int totalClientes = 0;
     int totalHospedes = 0;
@@ -183,12 +183,12 @@ void telaRelatorioEstatistico() {
 
     exibirTitulo();
 
-    printf("\n\n RelatÛrio EstatÌstico\n\n");
+    printf("\n\n Relat√≥rio Estat√≠stico\n\n");
     printf("------------------------------------------------------------------------------------------------------------------------\n");
-    printf(" Quantidade de clientes que ficar„o mais de 10 dias.....: %d\n", cliMaisDezDias);
-    printf(" MÈdia de quantidade de hÛspedes........................: %.2f\n", mediaHospedes);
-    printf(" Percentual de clientes que desejam funcion·rio auxiliar: %.2f%%\n", percFuncAuxiliar);
-    printf(" Idade do locat·rio mais novo...........................: %d\n", locMaisNovo);
+    printf(" Quantidade de clientes que ficar√£o mais de 10 dias.....: %d\n", cliMaisDezDias);
+    printf(" M√©dia de quantidade de h√≥spedes........................: %.2f\n", mediaHospedes);
+    printf(" Percentual de clientes que desejam funcion√°rio auxiliar: %.2f%%\n", percFuncAuxiliar);
+    printf(" Idade do locat√°rio mais novo...........................: %d\n", locMaisNovo);
 
     printf("\n\n------------------------------------------------------------------------------------------------------------------------\n");
 
@@ -215,54 +215,54 @@ void gravarDadosClientes(FILE* arquivo) {
 
     printf("\n Cadastrar Cliente\n\n");
 
-    // ValidaÁ„o do nome
+    // Valida√ß√£o do nome
     printf("\n\t Nome...............................................: ");
     getchar(); // Limpa o buffer de entrada antes de usar fgets
     fgets(Cliente.nome, sizeof(Cliente.nome), stdin);
     Cliente.nome[strcspn(Cliente.nome, "\n")] = '\0'; // Remover o caractere de nova linha (\n) lido pelo fgets
 
-    // ValidaÁ„o da idade
+    // Valida√ß√£o da idade
     do {
         printf("\n\t Idade..............................................: ");
         scanf("%d", &Cliente.idade);
         getchar();
 
         if (Cliente.idade <= 0) {
-            printf(" Valor inv·lido. Digite novamente.\n");
+            printf(" Valor inv√°lido. Digite novamente.\n");
         }
     } while (Cliente.idade <= 0);
 
-    // ValidaÁ„o da quantidade de pessoas na casa
+    // Valida√ß√£o da quantidade de pessoas na casa
     do {
         printf("\n\t Quantidade de pessoas na casa......................: ");
         scanf("%d", &Cliente.qtd);
         getchar();
 
         if (Cliente.qtd <= 0 || Cliente.qtd > 12) {
-            printf(" Valor inv·lido. Digite novamente.\n");
+            printf(" Valor inv√°lido. Digite novamente.\n");
         }
     } while (Cliente.qtd <= 0 || Cliente.qtd > 12);
 
-    // ValidaÁ„o da quantidade de dias
+    // Valida√ß√£o da quantidade de dias
     do {
         printf("\n\t Quantidade de dias.................................: ");
         scanf("%d", &Cliente.dias);
         getchar();
 
         if (Cliente.dias <= 0) {
-            printf(" Valor inv·lido. Digite novamente.\n");
+            printf(" Valor inv√°lido. Digite novamente.\n");
         }
     } while (Cliente.dias <= 0);
 
 
-    // ValidaÁ„o da necessidade de funcion·rio para auxiliar na limpeza;
+    // Valida√ß√£o da necessidade de funcion√°rio para auxiliar na limpeza;
     do {
-        printf("\n\t Funcion·rio para auxiliar na limpeza? (1-sim/0-n„o): ");
+        printf("\n\t Funcion√°rio para auxiliar na limpeza? (1-sim/0-n√£o): ");
         scanf("%d", &Cliente.auxLimpeza);
         getchar();
 
         if (Cliente.auxLimpeza != 1 && Cliente.auxLimpeza != 0) {
-            printf(" Valor inv·lido. Digite novamente.\n");
+            printf(" Valor inv√°lido. Digite novamente.\n");
         }
     } while (Cliente.auxLimpeza != 1 && Cliente.auxLimpeza != 0);
 
@@ -276,7 +276,7 @@ void gravarDadosClientes(FILE* arquivo) {
         }
     }
     if (!encontrado) {
-        printf("N„o h· taxas disponÌveis para a quantidade de hÛspedes especificada.\n");
+        printf("N√£o h√° taxas dispon√≠veis para a quantidade de h√≥spedes especificada.\n");
         return;
     }
 
@@ -292,7 +292,7 @@ void lerDadosClientes(){
     FILE* arquivo = fopen("db_cadastro_clientes.txt", "r");
 
     if(arquivo == NULL){
-        printf(" O arquivo de dados de Clientes n„o existe. Ser· criado um novo arquivo.\n");
+        printf(" O arquivo de dados de Clientes n√£o existe. Ser√° criado um novo arquivo.\n");
         return;
     }
 
@@ -300,13 +300,13 @@ void lerDadosClientes(){
 
     printf("\n\n Listagem Geral\n\n");
     printf("------------------------------------------------------------------------------------------------------------------------\n");
-    printf(" Nome                         Idade    HÛspedes    Dias    Funcion·rio    Valor Total    Adiantamento\n");
+    printf(" Nome                         Idade    H√≥spedes    Dias    Funcion√°rio    Valor Total    Adiantamento\n");
     printf("------------------------------------------------------------------------------------------------------------------------\n");
 
     struct Cliente Cliente;
 
     while (fscanf(arquivo, "%25[^|]|%d|%d|%d|%d|%f|%f\n", Cliente.nome, &Cliente.idade, &Cliente.qtd, &Cliente.dias, &Cliente.auxLimpeza, &Cliente.valorTotal, &Cliente.adiantamento) == 7) {
-        // Da linha 310 ‡ 314 È um "RTI" para fazer exibir os valores em float com o espaÁamento adequado;
+        // Da linha 310 √† 314 √© um "RTI" para fazer exibir os valores em float com o espa√ßamento adequado;
         char stringValorTotal[10];
         char stringAdiantamento[10];
 
